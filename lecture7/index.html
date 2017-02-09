@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="angular.min.js">
+    </script>
+    <script src="app.js" charset="utf-8"></script>
+    <title>HTML5 Custom Attributes</title>
+  </head>
+  <body>
+    <h1>Custom Attributes</h1>
+    <div class="" id="target" greeting="hello">
+      <section>
+        Section1
+        <article class="">
+          Article1
+        </article>
+      </section>
+    </div>
+    <script type="text/javascript">
+      var element=document.getElementById("target");
+      console.log(element);
+      console.log(element.getAttribute("greeting"));
+    </script>
+  </body>
+</html>
