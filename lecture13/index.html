@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="MsgApp">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>Custom Filter</title>
+    <style>
+        body {
+            font-size: 1.2em;
+        }
+    </style>
+    <script type="text/javascript" src="angular.min.js">
+
+    </script>
+    <script src="app.js" charset="utf-8"></script>
+</head>
+
+<body ng-controller="Msgcontroller">
+    <h1>Custom Filters</h1>
+    <div>
+        Original:{{sayMessage()}}
+        <br> Loves:{{sayLove()}}
+        <br> Truth:{{sayLove()|truth:'healthy':"cookie"}}
+        <br> Big Truth:{{sayLove()|truth:'healthy':"cookie"|uppercase}}
+    </div>
+    <div>
+        <button ng-click="feedYaakov();">Feed Yaakov</button>
+        <br>
+        <img src="" alt="" ng-src="images/avator_{{stateOfBeing}}.png">
+    </div>
+</body>
+
+</html>
