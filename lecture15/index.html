@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
 
-    <title>Digest Cycle</title>
+    <title>$digest and $apply</title>
     <style>
         body {
             font-size: 1.2em;
@@ -17,21 +17,16 @@
 </head>
 
 <body ng-controller="CounterController">
-    <button ng-click="showNumberOfWatchers()">Log # of Watchers</button>
-    <!--第一个digest-->
-    <input type="text" ng-model="name">
+
+
     <div>
-        <button ng-click="countOnce()">Up Once Counter (once)</button>
+
         <br>
         <button ng-click="upCounter()">Increment Counter</button>
-        
+
     </div>
     <div>
-        <!--第二个digest-->
-        Once Counter:{{onceCounter}}
-        <br>
-        <!--第三个digest-->
-        Counter:{{counter}}
+       Regular Counter:{{counter}}
     </div>
 </body>
 
