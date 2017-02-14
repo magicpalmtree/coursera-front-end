@@ -13,7 +13,7 @@
         var itemAdder=this;
 
         itemAdder.itemName="";
-        itemAdder.itemQuantity=0;
+        itemAdder.itemQuantity="";
         itemAdder.addItem=function(){
             ShoppingListService.addItem(itemAdder.itemName,itemAdder.itemQuantity);
         }
@@ -24,6 +24,10 @@
     function ShoppingListShowController(ShoppingListService) {
          var showCtrl=this;
          showCtrl.items=ShoppingListService.getItems();
+
+         showCtrl.removeItem=function(itemIndex){
+             ShoppingListService.removeItem(itemIndex);
+         }
     }
 
     function ShoppingListService(){
@@ -37,6 +41,9 @@
             };
             items.push(item);
         };
+        service.removeItem=function(itemIndex){
+            items.splice(itemIndex,1);
+        }
         service.getItems=function(){
             return items;
         }
