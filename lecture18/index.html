@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="BindingApp">
+<html lang="en" ng-app="app">
 
 <head>
     <meta charset="UTF-8">
@@ -17,25 +17,14 @@
     <script src="app.js" charset="utf-8"></script>
 </head>
 
-<body ng-controller="BindingController">
+<body ng-controller="FilterController">
+    <h1>Filtered ng-repeat demo</h1>
+    <h3>Shopping List:</h3>
+    <input type="text" ng-model="search">
 
-
-    <div>
-
-        <button ng-click="showNumberOfWatchers()">Log Number of Watchers</button>
-        <br>
-        <button ng-click="setFullName()">Set Full Name</button>
-        <br> 
-        <!--不触发digest-->
-        Full name is :{{::fullName}}
-        <br>
-        <button ng-click="logFirstName()">Log First Name</button>
-        <button ng-click="logFullName()">Log Full Name</button>
-    </div>
-    <div>
-        <label for="">Input th first name:</label>
-       <input type="text" ng-model="firstName">
-    </div>
+    <ul>
+        <li ng-repeat="item in shoppingList | filter:search">{{item}}</li>
+    </ul>
 </body>
 
 </html>
