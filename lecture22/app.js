@@ -2,27 +2,38 @@
     'use strict';
 
     angular.module('app', [])
-        .controller('ShoppingListController1', ShoppingListController1)
-        .controller('ShoppingListController2', ShoppingListController2)
-        .service("ShoppingListService", ShoppingListServiceProvider);
+        .controller('ShoppingListController', ShoppingListController)
+
+        .provider("ShoppingListService", ShoppingListServiceProvider)
+        .config(Config);
+
+    Config.$inject = ['ShoppingListServiceProvider'];
+    function Config(ShoppingListServiceProvider) {
+        ShoppingListServiceProvider.defaults.maxItems = 2;
+    }
+
+    ShoppingListController.$inject = ['ShoppingListService'];
+
+    function ShoppingListController(ShoppingListService) {
+        var list = this;
 
 
-    ShoppingListController1.$inject = ['ShoppingListService'];
+        list.items = ShoppingListService.getItems();
 
-    function ShoppingListController1(ShoppingListService) {
-        var list1 = this;
+        list.itemName = "";
+        list.itemQuantity = "";
 
-        var shoppingList = ShoppingListService();
-        list1.items = shoppingList.getItems();
+        list.addItem = function () {
+            try {
+                ShoppingListService.addItem(list.itemName, list.itemQuantity);
+            } catch (error) {
+                list.errorMessage = error.message;
+            }
 
-        list1.itemName = "";
-        list1.itemQuantity = "";
-        list1.addItem = function () {
-            shoppingList.addItem(list1.itemName, list1.itemQuantity);
         }
 
-        list1.removeItem = function (itemIndex) {
-            shoppingList.removeItem(itemIndex);
+        list.removeItem = function (itemIndex) {
+            ShoppingListService.removeItem(itemIndex);
         }
     }
 
@@ -31,16 +42,16 @@
     function ShoppingListServiceProvider() {
         var provider = this;
 
-        provider.defaults={
-            maxItems:10
+        provider.defaults = {
+            maxItems: 5
         };
-        provider.$get=function(){
-            var shoppingList=new ShoppingListService(provider.defaults.maxItems);
+        provider.$get = function () {
+            var shoppingList = new ShoppingListService(provider.defaults.maxItems);
             return shoppingList;
         };
     }
-    function ShoppingListService(maxItems){
-        var service=this;
+    function ShoppingListService(maxItems) {
+        var service = this;
         var items = [];
         service.addItem = function (itemName, itemQuantity) {
             if ((maxItems === undefined) || (
