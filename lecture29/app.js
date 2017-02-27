@@ -21,7 +21,7 @@
             }
             return false;
         };
-    };
+    }
     function shoppingList() {
         return {
             restrict: "AE",
@@ -56,12 +56,12 @@
             shoppingList.addItem(list1.itemName, list1.itemQuantity);
             list1.title = origTitle + "(" + list1.items.length + ") items";
 
-        }
+        };
 
         list1.removeItem = function (itemIndex) {
             shoppingList.removeItem(itemIndex);
             list1.title = origTitle + "(" + list1.items.length + ") items";
-        }
+        };
     }
 
     //# list #2
@@ -74,21 +74,21 @@
 
         list2.items = shoppingList.getItems();
         list2.addItem = function () {
-            debugger;
+            
             try {
                 shoppingList.addItem(list2.itemName, list2.itemQuantity);
             } catch (error) {
                 list2.errorMessage = error.message;
             }
-        }
+        };
         list2.removeItem = function (itemIndex) {
             shoppingList.removeItem(itemIndex);
-        }
+        };
     }
     function ShoppingListFactory() {
         var factory = function (maxItems) {
             return new ShoppingListService(maxItems);
-        }
+        };
         return factory;
     }
     function ShoppingListService(maxItems) {
@@ -111,10 +111,10 @@
         };
         service.removeItem = function (itemIndex) {
             items.splice(itemIndex, 1);
-        }
+        };
         service.getItems = function () {
             return items;
-        }
+        };
     }
 
 
