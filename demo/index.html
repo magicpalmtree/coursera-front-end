@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJS Controller Demo</title>
+    <script type="text/javascript" src="angular.min.js">
+
+    </script>
+    <script src="app.js" charset="utf-8"></script>
+</head>
+
+<body ng-controller="MainController">
+    <p>{{username}}</p>
+    <p>{{age}}</p>
+
+    <input type="text" ng-model="newItem">
+    <input type="button" ng-click="addItem();" value="Add Item">
+    <ul>
+        <li ng-repeat="item in items">{{item}}</li>
+    </ul>
+</body>
+
+</html>
